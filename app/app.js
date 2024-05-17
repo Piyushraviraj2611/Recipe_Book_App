@@ -11,14 +11,14 @@ const App = () => {
       <Stack.Navigator  
       screenOptions={{
           headerStyle: {
-            height: 60, // Adjust the height as needed
+            height: 60,
             backgroundColor:'white',
           },
         }}>
         <Stack.Screen name="Home" component={HomeScreen} 
         options={{
             headerTitleStyle: {
-              fontSize: 20, // Adjust the font size as needed
+              fontSize: 20, 
           
             },
           }} />
