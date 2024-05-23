@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, TextInput, Image } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, TextInput, Image, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 
 const HomeScreen = ({ navigation }) => {
   const [recipes, setRecipes] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
-  const apiKey = 'da0c65884bfd4106ace2b53631b61b1f';
+  const apiKey = 'c5f8179010b341b19e0130129432cd89';
 
   useEffect(() => {
     fetchRecipes();
@@ -21,7 +21,6 @@ const HomeScreen = ({ navigation }) => {
           query,
         },
       });
-      // console.log('hii',response);
       setRecipes(response.data.results);
     } catch (error) {
       console.error(error);
@@ -54,7 +53,7 @@ const HomeScreen = ({ navigation }) => {
         onChangeText={handleSearch}
       />
       {loading ? (
-        <Text>Loading...</Text>
+        <ActivityIndicator size="large" color="#3498db" />
       ) : (
         <FlatList
           data={recipes}
@@ -72,14 +71,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: '#f7f7f7',
   },
   searchBar: {
     height: 40,
-    borderColor: 'black',
+    borderColor: '#ddd',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 16,
-    paddingLeft: 8,
+    paddingHorizontal: 8,
+    backgroundColor: '#fff',
   },
   row: {
     justifyContent: 'space-between',
@@ -88,11 +89,18 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 8,
     alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
   },
   itemImage: {
     width: 150,
     height: 150,
-    borderRadius: 10,
+    borderRadius: 8,
   },
   itemTitle: {
     marginTop: 8,
